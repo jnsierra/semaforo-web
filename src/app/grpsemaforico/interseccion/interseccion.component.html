@@ -1,0 +1,10 @@
+
+<h4>Intersecciones</h4>
+<mat-form-field appearance="fill">
+  <mat-label>Intersección</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let item of interseccionList" [value]="item.id">
+      {{item.nombre}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
