@@ -2,9 +2,11 @@
 <h4>Intersecciones</h4>
 <mat-form-field appearance="fill">
   <mat-label>Intersección</mat-label>
-  <mat-select>
+  <mat-select [(value)]="seleccionado">
     <mat-option *ngFor="let item of interseccionList" [value]="item.id">
       {{item.nombre}}
     </mat-option>
   </mat-select>
 </mat-form-field>
+
+<app-visualizacion [id]="seleccionado"></app-visualizacion>

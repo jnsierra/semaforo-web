@@ -1,1 +1,15 @@
-<p>visualizacion works!</p>
+<br/>
+<br/>
+<br/>
+Este es desde el hijo
+{{_id}}
+{{interseccionFuncionado}}
+
+<div id="div-ejecutar-semaforo" *ngIf="!interseccionFuncionado && validaId" >
+    <button mat-raised-button color="primary" (click)="iniciar()">Inicializar intersección</button> &nbsp;&nbsp;&nbsp;
+    <button mat-raised-button color="warn">Parar</button>
+</div>
+
+<div id="div-semaforo" *ngIf="interseccionFuncionado" >
+    aparece
+</div>

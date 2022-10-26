@@ -31,6 +31,10 @@ export class UrlServices {
     }
 
     getEndPointConsultas() {
-        return `${ this.urlBase }/v.1/consultaSemaforo`;
+        return `${ this.urlBase }v.1/consultaSemaforo`;
+    }
+
+    getEndPointSemaforo() {
+        return `${ this.urlBase }v.1/semaforo`;
     }
 }

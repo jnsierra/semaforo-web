@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 import { VisualizacionComponent } from './grpsemaforico/visualizacion/visualizacion.component';
 
 @NgModule({
@@ -24,7 +25,8 @@ import { VisualizacionComponent } from './grpsemaforico/visualizacion/visualizac
     FormsModule,
     BrowserAnimationsModule,
     MatSliderModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

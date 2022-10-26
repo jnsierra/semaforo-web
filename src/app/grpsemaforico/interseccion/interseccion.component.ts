@@ -13,7 +13,7 @@ export class InterseccionComponent implements OnInit {
   seleccionado:string; 
 
   constructor(private interseccionService: InterseccionService) {
-    this.seleccionado = '';
+    this.seleccionado = "";
   }
 
   ngOnInit(): void {
