@@ -33,5 +33,8 @@ export class InterseccionService {
     return this.http.get(URL_SERVICE);
   }
 
-
+  consultaNumeroClientes(){
+    const URL_SERVICE = `${this._urlService.getEndPointConsultas()}/numclientsconnect/`;
+    return this.http.get<RespuestaMensajeModel>(URL_SERVICE);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { RespuestaMensajeModel } from 'src/app/models/respuestamensaje.model';
 import { InterseccionService } from 'src/app/servicios/intersecciones.service';
 
@@ -7,11 +7,13 @@ import { InterseccionService } from 'src/app/servicios/intersecciones.service';
   templateUrl: './visualizacion.component.html',
   styleUrls: ['./visualizacion.component.css']
 })
-export class VisualizacionComponent implements OnInit {
+export class VisualizacionComponent implements OnInit,OnDestroy {
 
+  intervalId:any;
   _id: string;
   validaId: boolean = false;
   interseccionFuncionado: boolean = false;
+  numClientes: number;
 
   @Input("id") set id(value: string) {
     this._id = value;
@@ -20,6 +22,12 @@ export class VisualizacionComponent implements OnInit {
 
   constructor(private interseccionService: InterseccionService) {
     this._id = '0';
+    this.numClientes = 0;
+  }
+  ngOnDestroy(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 
   ngOnInit(): void {
@@ -58,9 +66,29 @@ export class VisualizacionComponent implements OnInit {
     this.interseccionService.esperarClientes().subscribe(resp => {
       if(resp){
         alert('Esperando clientes');
+        this.iniciarConsultasCiclicas();
       }else{
         alert('Fallo al esperar clientes');
       }
     });
+  }
+
+  iniciarConsultasCiclicas(){
+    let valor = setInterval(this.consultaClientesConectados, 15000, this.interseccionService);
+    console.log(valor);
+  }
+
+  consultaClientesConectados(interseccionService: InterseccionService ){
+    let numeroClientesConectados;
+    interseccionService.consultaNumeroClientes().subscribe( (data: RespuestaMensajeModel) => {
+      if(data.code == 1){
+        numeroClientesConectados = data.respuesta;
+        return numeroClientesConectados;
+      }
+    });
+  }
+
+  iniciarSemaforo(){
+
   }
 }

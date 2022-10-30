@@ -4,9 +4,11 @@
 Este es desde el hijo
 {{_id}}
 {{interseccionFuncionado}}
+Numero de clientes: {{numClientes}}
 
 <div id="div-ejecutar-semaforo" *ngIf="!interseccionFuncionado && validaId" >
     <button mat-raised-button color="primary" (click)="iniciar()">Inicializar intersección</button> &nbsp;&nbsp;&nbsp;
+    <button mat-raised-button color="success" (click)="iniciarSemaforo()">Iniciar semaforos</button>
     <button mat-raised-button color="warn">Parar</button>
 </div>
 
