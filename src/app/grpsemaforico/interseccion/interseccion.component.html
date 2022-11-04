@@ -1,12 +1,44 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-6 col-sm-4">
+      <mat-card>
+        <mat-card-title>Plan Semaforico con el ID: {{id}}</mat-card-title>
+        <mat-card-subtitle>
+          <br>
+          <b>Nombre Intersección:</b>&nbsp;&nbsp; {{planSemaforico.nombreInterseccion}}<br>
+          <b>Ciclos:</b>&nbsp;&nbsp; {{planSemaforico.cicloIntersecion}}<br>
+          <b>Numero de Centrales:</b>&nbsp;&nbsp; {{planSemaforico.numeroCentral}}
+        </mat-card-subtitle>
+        <mat-card-actions align="end">
+          <button mat-button>Parar</button>
+          <button mat-button>Arrancar</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="col-6 col-sm-4">
 
-<h4>Intersecciones</h4>
-<mat-form-field appearance="fill">
-  <mat-label>Intersección</mat-label>
-  <mat-select [(value)]="seleccionado">
-    <mat-option *ngFor="let item of interseccionList" [value]="item.id">
-      {{item.nombre}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+      <mat-card>
+        <mat-card-title>Información General</mat-card-title>
+        <mat-card-subtitle>
+          <br>
+          <b>Número de clientes conectados:</b>&nbsp;&nbsp; 0<br>
+          <b>Tiempo Actual de ejecución:</b>&nbsp;&nbsp; 0<br>
+          <b>Estado:</b>&nbsp;&nbsp; APAGADO
+        </mat-card-subtitle>
+        <mat-card-actions align="end">
+          <button mat-button>Parar</button>
+          <button mat-button>Arrancar</button>
+        </mat-card-actions>
+      </mat-card>
 
-<app-visualizacion [id]="seleccionado"></app-visualizacion>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-12 col-sm-12"><h1>Grupos Semaforicos</h1></div>    
+  </div>
+  <div class="row" *ngFor="let item of planSemaforico.grpSemaforico; let indice = index" >
+    <app-centrales [grpSemaforico]="item"></app-centrales>
+  </div>
+</div>

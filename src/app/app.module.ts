@@ -10,13 +10,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { VisualizacionComponent } from './grpsemaforico/visualizacion/visualizacion.component';
+import { GnrvisualizacionComponent } from './panel/gnrvisualizacion/gnrvisualizacion.component';
+import { CentralesComponent } from './grpsemaforico/centrales/centrales.component';
+import { SemaforotiempoComponent } from './grpsemaforico/semaforotiempo/semaforotiempo.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     InterseccionComponent,
-    VisualizacionComponent
+    VisualizacionComponent,
+    GnrvisualizacionComponent,
+    CentralesComponent,
+    SemaforotiempoComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +36,9 @@ import { VisualizacionComponent } from './grpsemaforico/visualizacion/visualizac
     BrowserAnimationsModule,
     MatSliderModule,
     MatSelectModule,
-    MatButtonModule    
+    MatButtonModule,
+    MatCardModule,
+    MatTooltipModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

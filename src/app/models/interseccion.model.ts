@@ -1,4 +1,3 @@
-
 export class InterseccionModel{
     id: string;
     nombre: string;

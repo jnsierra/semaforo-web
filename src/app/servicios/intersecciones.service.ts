@@ -5,6 +5,7 @@ import { UrlServices } from './../general/url.entity';
 import { Injectable } from '@angular/core';
 import { InterseccionModel } from '../models/interseccion.model';
 import { RespuestaMensajeModel } from '../models/respuestamensaje.model';
+import { PlanSemaforicoModel } from '../models/plansemaforico.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,12 @@ import { RespuestaMensajeModel } from '../models/respuestamensaje.model';
 export class InterseccionService {
 
   constructor(private _urlService: UrlServices, private http: HttpClient){}
+
+  consultaInfInterseccion(idInterseccion: string){
+    const URL_SERVICE = `${this._urlService.getEndPointConsultas()}/infgnral/${idInterseccion}/`;
+    return this.http.get<PlanSemaforicoModel>(URL_SERVICE);
+
+  }
 
   consultarIntersecciones(){
     const URL_SERVICE = `${this._urlService.getEndPointConsultas()}/interseccion/`;

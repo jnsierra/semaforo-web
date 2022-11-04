@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { InterseccionModel } from 'src/app/models/interseccion.model';
 import { InterseccionService } from 'src/app/servicios/intersecciones.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PlanSemaforicoModel } from 'src/app/models/plansemaforico.model';
 
 @Component({
   selector: 'app-interseccion',
@@ -9,16 +11,26 @@ import { InterseccionService } from 'src/app/servicios/intersecciones.service';
 })
 export class InterseccionComponent implements OnInit {
 
-  interseccionList: InterseccionModel[] = [];
-  seleccionado:string; 
+  id:string;
+  planSemaforico: PlanSemaforicoModel;
 
-  constructor(private interseccionService: InterseccionService) {
-    this.seleccionado = "";
+  constructor(private interseccionService: InterseccionService,
+    private activatedRoute: ActivatedRoute) {
+      this.id = "";      
+      this.planSemaforico = new PlanSemaforicoModel();
+    this.activatedRoute.params.subscribe( params => {
+      this.id = params['id'];
+    });
   }
 
   ngOnInit(): void {
-    this.interseccionService.consultarIntersecciones().subscribe( (data: InterseccionModel[]) => {
-      this.interseccionList = data;
+    this.consultaDatosInterseccion();
+  }
+
+  consultaDatosInterseccion(){
+    this.interseccionService.consultaInfInterseccion(this.id).subscribe( (data : PlanSemaforicoModel) => {
+      this.planSemaforico = data;
+      console.log(data);
     });
   }
 

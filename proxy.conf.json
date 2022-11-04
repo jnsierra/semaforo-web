@@ -1,5 +1,5 @@
 {
-    "/api-business": {
+    "/api-broker": {
       "target": "http://localhost:5001",
       "secure": false
     }

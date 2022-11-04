@@ -1,0 +1,19 @@
+<br>
+<br>
+<div class="row">
+    <div class="col-4"><b>Nro:</b> {{grpSemaforico.nro}}</div>
+    <div class="col-4"><b>Nombre:</b> {{grpSemaforico.nombre}}</div>
+    <div class="col-4">
+        <div class="row" *ngFor="let item of grpSemaforico.semaforos; let indice = index">
+            <div class="col-6">
+                <b>TIPO DE SEMAFORO:</b> {{item.tipo}}
+            </div>
+        </div>        
+    </div>
+</div>
+<div class="row border">
+    <div class="col" *ngFor="let item of grpSemaforico.pasos; let indice = index" >
+        <app-semaforotiempo [tiempo]="item.tiempo" [accion]="dividirAccion(item.accion, 0)" [tipoSemaforo]="grpSemaforico.semaforos[0]"></app-semaforotiempo>
+        <app-semaforotiempo [tiempo]="item.tiempo" [accion]="dividirAccion(item.accion, 1)" [tipoSemaforo]="grpSemaforico.semaforos[1]"></app-semaforotiempo>
+    </div>
+</div>
