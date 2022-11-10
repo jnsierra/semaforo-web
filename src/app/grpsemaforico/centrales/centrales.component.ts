@@ -8,10 +8,13 @@ import { GrupoSemaforicoModel } from 'src/app/models/gruposemaforico.model';
 })
 export class CentralesComponent implements OnInit {
   @Input()
-  grpSemaforico: GrupoSemaforicoModel;
+  grpSemaforico: GrupoSemaforicoModel[];
+  @Input()
+  tiempoActual:number;
 
   constructor() {
-    this.grpSemaforico = new GrupoSemaforicoModel();
+    this.grpSemaforico = [];
+    this.tiempoActual = 0;
   }
 
   ngOnInit(): void {
@@ -25,6 +28,14 @@ export class CentralesComponent implements OnInit {
     }else{
       return accionDos;
     }
+  }
+  
+  validaTiempo(tmpPaso: number){
+    //console.log('Tiempo Actual: ' + this.tiempoActual + ' Tiempo Paso: ' +  tmpPaso );
+    if(this.tiempoActual === tmpPaso ){
+      return true;
+    }
+    return false;
   }
 
 }

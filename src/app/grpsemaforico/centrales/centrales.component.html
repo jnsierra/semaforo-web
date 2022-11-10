@@ -1,19 +1,21 @@
-<br>
-<br>
-<div class="row">
-    <div class="col-4"><b>Nro:</b> {{grpSemaforico.nro}}</div>
-    <div class="col-4"><b>Nombre:</b> {{grpSemaforico.nombre}}</div>
-    <div class="col-4">
-        <div class="row" *ngFor="let item of grpSemaforico.semaforos; let indice = index">
-            <div class="col-6">
-                <b>TIPO DE SEMAFORO:</b> {{item.tipo}}
-            </div>
-        </div>        
-    </div>
-</div>
-<div class="row border">
-    <div class="col" *ngFor="let item of grpSemaforico.pasos; let indice = index" >
-        <app-semaforotiempo [tiempo]="item.tiempo" [accion]="dividirAccion(item.accion, 0)" [tipoSemaforo]="grpSemaforico.semaforos[0]"></app-semaforotiempo>
-        <app-semaforotiempo [tiempo]="item.tiempo" [accion]="dividirAccion(item.accion, 1)" [tipoSemaforo]="grpSemaforico.semaforos[1]"></app-semaforotiempo>
-    </div>
+<div class="table-responsive">
+    <table class="table table-striped-columns">
+        <thead>
+            <tr>
+                <th>Grupo de Señales</th>
+                <th *ngFor="let item of grpSemaforico[0].pasos; let indicePasos = index">{{indicePasos+1}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of grpSemaforico" >
+                <th>{{item.nro}}</th>
+                <td *ngFor="let itemPasos of item.pasos">
+                    <!--div [ngClass]="validaTiempo(itemPasos.tiempo) ? 'border border-danger' : '' "-->
+                    <div [ngStyle]="{'background-color':validaTiempo(itemPasos.tiempo) ? 'yellow' : '' }">
+                        <app-semaforotiempo [tiempo]="itemPasos.tiempo" [accion]="dividirAccion(itemPasos.accion, 0)" ></app-semaforotiempo>
+                    </div>                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

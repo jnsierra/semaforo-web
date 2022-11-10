@@ -23,7 +23,7 @@
         <mat-card-subtitle>
           <br>
           <b>Número de clientes conectados:</b>&nbsp;&nbsp; 0<br>
-          <b>Tiempo Actual de ejecución:</b>&nbsp;&nbsp; 0<br>
+          <b>Tiempo Actual de ejecución:</b>&nbsp;&nbsp; {{tiempoActual}}<br>
           <b>Estado:</b>&nbsp;&nbsp; APAGADO
         </mat-card-subtitle>
         <mat-card-actions align="end">
@@ -38,7 +38,5 @@
   <div class="row">
     <div class="col-12 col-sm-12"><h1>Grupos Semaforicos</h1></div>    
   </div>
-  <div class="row" *ngFor="let item of planSemaforico.grpSemaforico; let indice = index" >
-    <app-centrales [grpSemaforico]="item"></app-centrales>
-  </div>
+    <app-centrales [grpSemaforico]="planSemaforico.grpSemaforico" [tiempoActual]="tiempoActual"></app-centrales>
 </div>

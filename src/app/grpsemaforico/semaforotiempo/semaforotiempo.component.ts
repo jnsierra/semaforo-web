@@ -57,15 +57,15 @@ export class SemaforotiempoComponent implements OnInit, AfterViewInit {
       var context = this.stage.nativeElement.getContext('2d');
       if(context != null)  {
         context.fillStyle = "#000000";
-        context.strokeRect(5, 5, 50, 80);
+        context.strokeRect(2, 2, 25, 40);
         context.beginPath();
-        context.arc(30, 20, 10, 0, Math.PI * 2, false );
+        context.arc(14, 10, 5, 0, Math.PI * 2, false );
         context.stroke();
         context.beginPath();
-        context.arc(30, 45, 10, 0, Math.PI * 2, false );
+        context.arc(14, 23, 5, 0, Math.PI * 2, false );
         context.stroke();
         context.beginPath();
-        context.arc(30, 70, 10, 0, Math.PI * 2, false );
+        context.arc(14, 34, 5, 0, Math.PI * 2, false );
         context.stroke();
         this.pintarLuces(context);
       }
@@ -77,20 +77,20 @@ export class SemaforotiempoComponent implements OnInit, AfterViewInit {
     if(this.verde){
       context.fillStyle = "#008F39";
       context.beginPath();
-      context.arc(30, 70, 10, 0, (Math.PI * 2) / intermitencia, false );
+      context.arc(14, 34, 5, 0, (Math.PI * 2) / intermitencia, false );
       context.fill();
     }
     if(this.amarillo){
       context.fillStyle = "#ff8000";
       context.beginPath();
-      context.arc(30, 45, 10, 0, (Math.PI * 2) / intermitencia, false );
+      context.arc(14, 23, 5, 0, (Math.PI * 2) / intermitencia, false );
       context.fill();
     }
 
     if(this.rojo){
       context.fillStyle = "#ff0000";
       context.beginPath();
-      context.arc(30, 20, 10, 0, (Math.PI * 2) / intermitencia, false );
+      context.arc(14, 10, 5, 0, (Math.PI * 2) / intermitencia, false );
       context.fill();
     }
 
