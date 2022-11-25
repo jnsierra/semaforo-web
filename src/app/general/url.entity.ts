@@ -37,4 +37,8 @@ export class UrlServices {
     getEndPointSemaforo() {
         return `${ this.urlBase }v.1/semaforo`;
     }
+
+    getEndPointEjecucion() {
+        return `${ this.urlBase }v.1/ejecutarSemaforo`;
+    }
 }

@@ -16,28 +16,55 @@ export class InterseccionComponent implements OnInit {
   planSemaforico: PlanSemaforicoModel;
   datos:boolean; 
   tiempoActual:number;
+  estadoGrpSmf:string;
+  clientesConectados:string;
+  conexionesCompletas : boolean;
   
 
   constructor(private interseccionService: InterseccionService,
     private activatedRoute: ActivatedRoute) {
-      this.id = "";      
+      this.id = ""; 
+      this.estadoGrpSmf = "";     
+      this.clientesConectados = "";
+      this.conexionesCompletas = false;
       this.planSemaforico = new PlanSemaforicoModel();
     this.activatedRoute.params.subscribe( params => {
       this.id = params['id'];
     });
     this.datos = false;
     this.tiempoActual = 0;
-    const source = timer(0,1000);
-    const subscribe = source.subscribe(val => this.cambiaTiempo(val));
+    const source = timer(0,5000);
+    const subscribe = source.subscribe(val => this.consultaEstado());
   }
 
   ngOnInit(): void {
     this.consultaDatosInterseccion();
   }
 
-  cambiaTiempo(tiempo:number){
-    if(this.datos){
-      this.tiempoActual = tiempo;
+  consultaConectados(estado: string){
+    if(estado === 'ESPERA_CONEXIONES'){
+      this.interseccionService.consultaNumeroConectados(this.id).subscribe( resp => {
+        console.log(resp);
+        this.clientesConectados =  JSON.stringify(resp);
+        this.clientesConectados = this.clientesConectados .replace(/['"]+/g, '')
+      });
+      console.log('Entro para buscar el numero de conectados');
+    }
+  }
+
+  consultaEstado(){
+    if(this.estadoGrpSmf === 'CONEXIONES_COMPLETAS' && !this.conexionesCompletas){
+      this.interseccionService.consultaNumeroConectados(this.id).subscribe( resp => {
+        this.clientesConectados =  JSON.stringify(resp);
+        this.clientesConectados = this.clientesConectados .replace(/['"]+/g, '')
+        this.conexionesCompletas = true;
+      });
+    }else{
+      this.interseccionService.consultaEstadoGrpSem(this.id).subscribe(resp => {
+        this.estadoGrpSmf = JSON.stringify(resp);
+        this.estadoGrpSmf = this.estadoGrpSmf .replace(/['"]+/g, '')
+        this.consultaConectados(this.estadoGrpSmf);
+      });
     }
     
   }
@@ -47,6 +74,18 @@ export class InterseccionComponent implements OnInit {
       this.planSemaforico = data;
       this.datos = true;
     });
+  }
+
+  iniciarSemaforos(){
+    if(this.estadoGrpSmf === 'CONEXIONES_COMPLETAS'){
+      this.interseccionService.ejecutarSemaforos(this.id).subscribe( resp => {
+        console.log('Esta es la respuesta al iniciar ' + resp);
+        this.interseccionService.consultaEstadoGrpSem(this.id).subscribe(resp => {
+          this.estadoGrpSmf = JSON.stringify(resp);
+          this.estadoGrpSmf = this.estadoGrpSmf .replace(/['"]+/g, '')
+        });
+      });
+    }
   }
 
 }

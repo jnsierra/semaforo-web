@@ -11,8 +11,7 @@
           <b>Numero de Centrales:</b>&nbsp;&nbsp; {{planSemaforico.numeroCentral}}
         </mat-card-subtitle>
         <mat-card-actions align="end">
-          <button mat-button>Parar</button>
-          <button mat-button>Arrancar</button>
+          <button mat-button routerLink="/gnrvisualizacion">Ir al mapa</button>
         </mat-card-actions>
       </mat-card>
     </div>
@@ -22,13 +21,13 @@
         <mat-card-title>Información General</mat-card-title>
         <mat-card-subtitle>
           <br>
-          <b>Número de clientes conectados:</b>&nbsp;&nbsp; 0<br>
+          <b>Número de clientes conectados:</b>&nbsp;&nbsp; {{clientesConectados}}<br>
           <b>Tiempo Actual de ejecución:</b>&nbsp;&nbsp; {{tiempoActual}}<br>
-          <b>Estado:</b>&nbsp;&nbsp; APAGADO
+          <b>Estado:</b>&nbsp;&nbsp; {{estadoGrpSmf}}
         </mat-card-subtitle>
         <mat-card-actions align="end">
           <button mat-button>Parar</button>
-          <button mat-button>Arrancar</button>
+          <button mat-button (click)="iniciarSemaforos()">Arrancar</button>
         </mat-card-actions>
       </mat-card>
 

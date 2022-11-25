@@ -44,4 +44,19 @@ export class InterseccionService {
     const URL_SERVICE = `${this._urlService.getEndPointConsultas()}/numclientsconnect/`;
     return this.http.get<RespuestaMensajeModel>(URL_SERVICE);
   }
+
+  consultaEstadoGrpSem(idInterseccion: string){
+    const URL_SERVICE = `${this._urlService.getEndPointConsultas()}/estado/${idInterseccion}/`;
+    return this.http.get(URL_SERVICE);
+  }
+
+  consultaNumeroConectados(idInterseccion: string){
+    const URL_SERVICE = `${this._urlService.getEndPointConsultas()}/conexiones/${idInterseccion}/`;
+    return this.http.get(URL_SERVICE);
+  }
+
+  ejecutarSemaforos(idInterseccion: string){
+    const URL_SERVICE = `${this._urlService.getEndPointEjecucion()}/ejecutar/${idInterseccion}/`;
+    return this.http.get(URL_SERVICE);
+  }
 }

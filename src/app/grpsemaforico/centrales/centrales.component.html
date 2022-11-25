@@ -13,7 +13,7 @@
                     <!--div [ngClass]="validaTiempo(itemPasos.tiempo) ? 'border border-danger' : '' "-->
                     <div [ngStyle]="{'background-color':validaTiempo(itemPasos.tiempo) ? 'yellow' : '' }">
                         <app-semaforotiempo [tiempo]="itemPasos.tiempo" [accion]="dividirAccion(itemPasos.accion, 0)" ></app-semaforotiempo>
-                    </div>                    
+                    </div>                  
                 </td>
             </tr>
         </tbody>
