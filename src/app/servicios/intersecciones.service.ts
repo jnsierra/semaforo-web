@@ -59,4 +59,9 @@ export class InterseccionService {
     const URL_SERVICE = `${this._urlService.getEndPointEjecucion()}/ejecutar/${idInterseccion}/`;
     return this.http.get(URL_SERVICE);
   }
+
+  consultaTiempo(idInterseccion: string){
+    const URL_SERVICE = `${this._urlService.getEndPointConsultas()}/tiempo/${idInterseccion}/`;
+    return this.http.get<number>(URL_SERVICE);
+  }
 }

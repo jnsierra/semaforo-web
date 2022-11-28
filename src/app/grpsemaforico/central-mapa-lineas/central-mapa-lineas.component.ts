@@ -1,23 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { GrupoSemaforicoModel } from 'src/app/models/gruposemaforico.model';
 
 @Component({
-  selector: 'app-centrales',
-  templateUrl: './centrales.component.html',
-  styleUrls: ['./centrales.component.css']
+  selector: 'app-central-mapa-lineas',
+  templateUrl: './central-mapa-lineas.component.html',
+  styleUrls: ['./central-mapa-lineas.component.css']
 })
-export class CentralesComponent implements OnInit {
+export class CentralMapaLineasComponent implements OnInit {
+
   @Input()
   grpSemaforico: GrupoSemaforicoModel[];
   @Input()
   tiempoActual:number;
-  @Input()
-  unitario:boolean;
 
   constructor() {
     this.grpSemaforico = [];
     this.tiempoActual = 0;
-    this.unitario = true;
   }
 
   ngOnInit(): void {
@@ -32,7 +30,7 @@ export class CentralesComponent implements OnInit {
       return accionDos;
     }
   }
-  
+
   validaTiempo(tmpPaso: number){
     //console.log('Tiempo Actual: ' + this.tiempoActual + ' Tiempo Paso: ' +  tmpPaso );
     if(this.tiempoActual === tmpPaso ){

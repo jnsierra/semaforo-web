@@ -1,51 +1,50 @@
-import { Component, OnInit, Input, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-import { SemaforoModel } from 'src/app/models/semaforo.model';
-import { timer } from 'rxjs';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-semaforotiempo',
-  templateUrl: './semaforotiempo.component.html',
-  styleUrls: ['./semaforotiempo.component.css']
+  selector: 'app-semaforo-unico',
+  templateUrl: './semaforo-unico.component.html',
+  styleUrls: ['./semaforo-unico.component.css']
 })
-export class SemaforotiempoComponent implements OnInit, AfterViewInit {
+export class SemaforoUnicoComponent implements OnInit, AfterViewInit {
+
+  accion: string;
 
   @Input()
-  accion: string;
-  @Input()
-  tipoSemaforo: SemaforoModel; 
-  tiempo:number;
-  @Input()
-  set _tiempo(val:number){
-    console.log('llega: ' + val)
-    //this.pintarSemaforo();
+  set _accion(val: string){
+    this.accion = val;
+    console.log(val);
+    this.validaOperacion();
+    this.rePaint();
   }
+
+  @Input()
+  tiempo: number;
+
+  @ViewChild('stage')
+  stage: ElementRef<HTMLCanvasElement> = {} as ElementRef;
 
   verde:boolean;
   amarillo:boolean;
   rojo:boolean;
   intermitencia:boolean;
 
-  @ViewChild('stage')
-  stage: ElementRef<HTMLCanvasElement> = {} as ElementRef;
-
-  
-
   constructor() {
     this.accion = "";
-    this.tipoSemaforo = new SemaforoModel();
+    this.tiempo = 0;
     this.verde = true;
     this.amarillo = true;
     this.rojo = true;
     this.intermitencia = true;
     this.tiempo = 0;
-  }
+   }
   ngAfterViewInit(): void {
-    this.pintarSemaforo();
+    this.rePaint();
+    this.validaOperacion();
   }
 
   ngOnInit(): void {
-    this.validaOperacion();    
-  }  
+    
+  }
 
   validaOperacion(){
     var intermitenciaN = this.accion.substring(0, 1);
@@ -59,11 +58,12 @@ export class SemaforotiempoComponent implements OnInit, AfterViewInit {
     this.verde = (verdeN === '0') ? false : true;
   }
 
-  pintarSemaforo(){
-    console.log('Se pinta');
+  rePaint(){
     if(this.stage !== undefined ){
       var context = this.stage.nativeElement.getContext('2d');
       if(context != null)  {
+        context.fillStyle = "#ffffff";
+        context.fillRect(1, 1, 27, 42);
         context.fillStyle = "#000000";
         context.strokeRect(2, 2, 25, 40);
         context.beginPath();
@@ -103,4 +103,5 @@ export class SemaforotiempoComponent implements OnInit, AfterViewInit {
     }
 
   }
+
 }

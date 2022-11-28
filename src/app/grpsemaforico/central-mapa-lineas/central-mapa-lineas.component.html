@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table table-striped-columns">
+    <table >
         <thead>
             <tr>
                 <th>Grupo de Señales</th>
@@ -10,9 +10,8 @@
             <tr *ngFor="let item of grpSemaforico" >
                 <th>{{item.nro}}</th>
                 <td *ngFor="let itemPasos of item.pasos">
-                    <!--div [ngClass]="validaTiempo(itemPasos.tiempo) ? 'border border-danger' : '' "-->
-                    <div [ngStyle]="{'background-color':validaTiempo(itemPasos.tiempo) ? 'yellow' : '' }">
-                        <app-semaforotiempo [_tiempo]="itemPasos.tiempo" [accion]="dividirAccion(itemPasos.accion, 0)" ></app-semaforotiempo>
+                    <div [ngStyle]="{'background-color':validaTiempo(itemPasos.tiempo) ? 'black' : '' }">
+                        <app-semaforo-lineas [tiempo]="itemPasos.tiempo" [accion]="dividirAccion(itemPasos.accion, 0)"></app-semaforo-lineas>
                     </div>                  
                 </td>
             </tr>

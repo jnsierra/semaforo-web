@@ -37,5 +37,17 @@
   <div class="row">
     <div class="col-12 col-sm-12"><h1>Grupos Semaforicos</h1></div>    
   </div>
-    <app-centrales [grpSemaforico]="planSemaforico.grpSemaforico" [tiempoActual]="tiempoActual"></app-centrales>
+  <div class="row">
+    <mat-tab-group>
+      <mat-tab label="Semaforos"> 
+        <app-centrales [grpSemaforico]="planSemaforico.grpSemaforico" [tiempoActual]="tiempoActual" [unitario]="false"></app-centrales>
+      </mat-tab>
+      <mat-tab label="Second">
+        <app-central-unico [grpSemaforico]="planSemaforico.grpSemaforico" [tiempoActual]="tiempoActual" ></app-central-unico>
+      </mat-tab>
+      <mat-tab label="Mapa de Lineas">
+        <app-central-mapa-lineas [grpSemaforico]="planSemaforico.grpSemaforico" [tiempoActual]="tiempoActual"></app-central-mapa-lineas>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
 </div>

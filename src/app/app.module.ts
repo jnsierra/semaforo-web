@@ -12,11 +12,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { VisualizacionComponent } from './grpsemaforico/visualizacion/visualizacion.component';
 import { GnrvisualizacionComponent } from './panel/gnrvisualizacion/gnrvisualizacion.component';
 import { CentralesComponent } from './grpsemaforico/centrales/centrales.component';
 import { SemaforotiempoComponent } from './grpsemaforico/semaforotiempo/semaforotiempo.component';
+import { CentralUnicoComponent } from './grpsemaforico/central-unico/central-unico.component';
+import { SemaforoUnicoComponent } from './grpsemaforico/semaforo-unico/semaforo-unico.component';
+import { CentralMapaLineasComponent } from './grpsemaforico/central-mapa-lineas/central-mapa-lineas.component';
+import { SemaforoLineasComponent } from './grpsemaforico/semaforo-lineas/semaforo-lineas.component';
 
 
 @NgModule({
@@ -26,7 +31,11 @@ import { SemaforotiempoComponent } from './grpsemaforico/semaforotiempo/semaforo
     VisualizacionComponent,
     GnrvisualizacionComponent,
     CentralesComponent,
-    SemaforotiempoComponent
+    SemaforotiempoComponent,
+    CentralUnicoComponent,
+    SemaforoUnicoComponent,
+    CentralMapaLineasComponent,
+    SemaforoLineasComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +47,8 @@ import { SemaforotiempoComponent } from './grpsemaforico/semaforotiempo/semaforo
     MatSelectModule,
     MatButtonModule,
     MatCardModule,
-    MatTooltipModule    
+    MatTooltipModule,
+    MatTabsModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

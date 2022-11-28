@@ -1,0 +1,22 @@
+<div class="table-responsive">
+    <table class="table table-striped-columns">
+        <thead>
+            <tr>
+                <th width="10">Grupo de Señales</th>
+                <th width="90">Tiempo Actual: {{tiempoActual}}  {{tiempoActual != 0}}</th>
+            </tr>
+        </thead> 
+        <tbody>
+            <tr *ngFor="let item of grpSemaforico" >
+                <td>{{item.nro}}</td>
+                <td>
+                    <div>
+                        <div *ngIf="tiempoActual != 0">
+                            <app-semaforo-unico [tiempo]="item.pasos[tiempoActual-1].tiempo" [_accion]="dividirAccion(item.pasos[tiempoActual-1].accion, 0)" ></app-semaforo-unico>
+                        </div>
+                    </div> 
+                </td>
+            </tr>
+        </tbody>       
+    </table>
+</div>
