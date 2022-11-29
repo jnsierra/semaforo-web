@@ -61,6 +61,7 @@ export class InterseccionComponent implements OnInit {
   consultaEstado() {
     if( this.estadoGrpSmf != 'CORRIENDO'){
       this.interseccionService.consultaEstadoGrpSem(this.id).subscribe(resp => {
+        console.log("Esta es la respuesta del estado" + resp);
         this.estadoGrpSmf = JSON.stringify(resp);
         this.estadoGrpSmf = this.estadoGrpSmf.replace(/['"]+/g, '')
         this.consultaConectados(this.estadoGrpSmf);
